@@ -1,0 +1,7 @@
+{{> header}}
+<main>
+  <h1>This is a private page!</h1>
+  <p>You should only be able to see this page if logged in.</p>
+  <p>Currently, you are {{#unless isLoggedIn}} NOT {{/unless}} logged in.</p>
+  <p>Use the header above to {{#if isLoggedIn}} logout{{else}} login or create an account{{/if}}.</p>
+</main>

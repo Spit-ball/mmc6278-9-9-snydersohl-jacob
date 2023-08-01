@@ -1,0 +1,33 @@
+{
+  "name": "mysql_hbs_auth_starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "export DB_NAME=mysql_project_db && npm run mysql && nodemon index.js",
+    "mysql": "npm run mysql:restart && npm run mysql:check",
+    "mysql:restart": "npm run mysql:stop; npm run mysql:start",
+    "mysql:start": "export FLAG=-d && npm run mysql:run",
+    "mysql:start:log": "export DB_NAME=mysql_project_db export FLAG=-it && npm run mysql:run",
+    "mysql:run": "docker run $FLAG --rm -p 3306:3306 -v $(pwd)/schema:/docker-entrypoint-initdb.d --name=mysql-sandbox -e MYSQL_ALLOW_EMPTY_PASSWORD=root -e MYSQL_DATABASE=$DB_NAME mysql:8 mysqld --authentication_policy=mysql_native_password",
+    "mysql:stop": "docker container stop mysql-sandbox",
+    "mysql:shell": "docker exec -it mysql-sandbox mysql",
+    "mysql:check": "until docker exec mysql-sandbox mysql -e \"use $DB_NAME; show tables;\"; do echo ...; sleep 1; done && sleep 3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "express-mysql-session": "^2.1.8",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

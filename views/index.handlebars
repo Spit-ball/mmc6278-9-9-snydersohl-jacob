@@ -1,0 +1,23 @@
+{{> header}}
+<main>
+  <section id="included">
+  <h1>This is the home page!</h1>
+  <p>Currently, you are {{#unless isLoggedIn}} NOT {{/unless}} logged in.</p>
+  <p>You should {{#unless isLoggedIn}}NOT{{/unless}} be able to access <a href="/private">this page</a>.</p>
+  <p>Use the header above to {{#if isLoggedIn}} logout{{else}} login or create an account{{/if}}.</p>
+  </section>
+
+<!-- Forum Content - create content cards inclu`ding title of post, username, date/time posted, and preview of content up to 30 words. -->
+  <section id="forum-content">
+    <div class="post-card">
+      <div class="post-card-header">
+        <h2>Post Title</h2>
+        <p>Posted by: {{#unless isLoggedIn}}<a href="/login">{{/unless}}<a href="#"</a>Username</p>
+      </div>
+      <div class="post-card-body">
+        <p>Lorem ipsum dolor sit amet</p>
+     </div>
+   </div>
+  </section>
+
+</main>
