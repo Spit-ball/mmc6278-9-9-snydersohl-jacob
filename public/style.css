@@ -137,3 +137,38 @@ header .site-logo {
     margin: calc(var(--space) / 2);
   }
 }
+
+#forum {
+  background-color: #2e8b57;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+.content-card {
+  background-color: #006400;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+body {
+  text-align: center;
+}
+form {
+  display: inline-block;
+  text-align: left;
+}
+label {
+  display: block;
+}
+input,
+textarea {
+  display: block;
+  width: 100%;
+}
+
+form {
+  background-color: #0f380f;
+  padding: 20px;
+  border-radius: 10px;
+}

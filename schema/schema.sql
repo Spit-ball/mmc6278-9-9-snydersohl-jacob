@@ -5,3 +5,24 @@ CREATE TABLE users (
   username VARCHAR(100) NOT NULL UNIQUE,
   password VARCHAR(200) NOT NULL
 );
+
+CREATE TABLE posts (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  body TEXT NOT NULL,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE comments (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  body TEXT NOT NULL,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (post_id) REFERENCES posts(id)
+);
+
+
+
+

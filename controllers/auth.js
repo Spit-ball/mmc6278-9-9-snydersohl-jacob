@@ -3,11 +3,13 @@ const { User } = require("../models");
 async function login(req, res) {
   try {
     const { username, password } = req.body;
+    console.log("login request received with username:", username, "and password:", password)
 
     if (!username || !password)
       return res.redirect("/login?error=must include username and password");
 
     const user = await User.findByUsername(username);
+    console.log("User object from the db:", user);
 
     if (!user)
       return res.redirect("/login?error=username or password is incorrect");
@@ -18,6 +20,8 @@ async function login(req, res) {
       return res.redirect("/login?error=username or password is incorrect");
 
     req.session.isLoggedIn = true;
+    req.session.user = user; // THIS SHOULD SEND THE USER OBJECT TO THE SESSION AND ALLOW ME TO USE IT IN THE HANDLEBARS >.<
+
     req.session.save(() => res.redirect("/"));
   } catch (err) {
     res.status(500).send(err.message);

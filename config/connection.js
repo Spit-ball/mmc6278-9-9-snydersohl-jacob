@@ -6,6 +6,6 @@ const config = process.env.JAWSDB_URL || {
   user: "root",
   database: process.env.DB_NAME,
 };
-const db = mysql.createPool(config);
+const connection = mysql.createPool(config);
 
-module.exports = db.promise();
+module.exports = connection.promise();

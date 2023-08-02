@@ -1,4 +1,5 @@
 require("dotenv").config();
+console.log(process.env.DB_NAME);
 const express = require("express");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
