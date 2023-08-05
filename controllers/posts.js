@@ -12,15 +12,9 @@ async function createPost(req, res, user) {
         const postId = results.insertId;
         console.log("Post created with ID: " + postId);
 
-        // Fetch the username of the user who created the post
-        const getUserQuery = "SELECT username FROM users WHERE id = ?";
-        const [userResults] = await connection.query(getUserQuery, [userID]);
-        const username = userResults[0].username;
-
-        // Now, render the "forum-content" page with the postId and username as query parameters
-        res.redirect(`/forum-content?postId=${postId}&username=${username}`);
+        res.redirect("/");
     } catch (err) {
-        console.log("Error creating post: " + err);
+        console.log("Error creating posts: " + err);
         res.status(500).send("Error creating post");
     }
 }

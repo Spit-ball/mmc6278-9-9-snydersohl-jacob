@@ -37,7 +37,8 @@ router.get("/", async (req, res) => {
 
 
 router.get("/login", async (req, res) => {
-  if (req.session.isLoggedIn) return res.redirect("/");
+  if (req.session.isLoggedIn)
+    return res.redirect("/");
   res.render("login", { error: req.query.error });
 });
 
@@ -62,7 +63,7 @@ router.get("/forum-content", async (req, res) => {
     const [results] = await connection.query(query);
 
     // Pass the posts data to the "forum-content" template
-    res.render("forum-content", { posts: results });
+    res.render("loggedIn", { posts: results });
   } catch (err) {
     res.status(500).send("Error fetching posts");
   }

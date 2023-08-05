@@ -1,19 +1,11 @@
 {{> header}}
 <main>
-  <h1>Just Spitballin'</h1>
-  
+
     {{#if isLoggedIn}}
       <a href="/create-post">Create a New Post</a>
     {{else}}
       <p>Please login or sign up to create a post.</p>
     {{/if}}
 
-{{#each posts}}
-  <div class="post">
-    <h2>{{title}}</h2>
-    <p>{{body}}</p>
-    <p>Created by: {{username}}</p>
-  </div>
-{{/each}}
-
+{{> forum-content}}
 </main>

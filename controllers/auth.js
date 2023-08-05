@@ -20,7 +20,7 @@ async function login(req, res) {
       return res.redirect("/login?error=username or password is incorrect");
 
     req.session.isLoggedIn = true;
-    req.session.user = user; // THIS SHOULD SEND THE USER OBJECT TO THE SESSION AND ALLOW ME TO USE IT IN THE HANDLEBARS >.<
+    req.session.user = user;
 
     req.session.save(() => res.redirect("/"));
   } catch (err) {
