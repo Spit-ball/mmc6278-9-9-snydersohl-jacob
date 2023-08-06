@@ -19,7 +19,7 @@ router.post("/random-fact", checkAuth, async (req, res) => {
         const data = await response.json();
         const randomFact = data.text;
 
-        const userID = req.session.user.id; // Assuming you have the authenticated user ID in the session
+        const userID = req.session.user.id;
         const title = req.body.title;
         const insertQuery = "INSERT INTO posts (title, body, user_id) VALUES (?, ?, ?)";
         const values = [title, randomFact, userID];

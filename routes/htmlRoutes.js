@@ -3,7 +3,7 @@ const checkAuth = require("../middleware/auth");
 const posts = require("../controllers/posts");
 const connection = require("../config/connection");
 
-// fetches any posts that exist in the database
+// fetches any posts that exist in the database & relates it to username
 async function getAllPosts() {
   try {
     const query = "SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.id";
