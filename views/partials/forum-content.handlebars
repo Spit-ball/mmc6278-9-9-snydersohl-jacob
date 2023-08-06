@@ -8,5 +8,9 @@
     {{#if belongsToCurrentUser}}
       <a href="/update/{{id}}" class="update-button">Update</a>
     {{/if}}
+
+    {{#if belongsToCurrentUser}}
+      <a href="/delete/{{id}}" class="delete-button">Delete</a>
+    {{/if}}
   </div>
 {{/each}}

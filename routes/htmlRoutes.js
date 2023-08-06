@@ -84,17 +84,13 @@ router.get("/update/:postId", checkAuth, async (req, res) => {
     const postId = req.params.postId;
     const userID = req.session.user.id;
 
-    // Query the database to get the post with the given postId
     const selectQuery = "SELECT * FROM posts WHERE id = ? AND user_id = ?";
     const [postResults] = await connection.query(selectQuery, [postId, userID]);
 
-    // If the post doesn't exist or doesn't belong to the user, show an error or redirect
     if (postResults.length === 0) {
-      // You can show an error message or redirect to a different page, for example:
       return res.status(403).send("You are not authorized to update this post.");
     }
 
-    // Render the update-post form passing the existing post data
     res.render("updatePostForm", { post: postResults[0] });
 
   } catch (err) {
@@ -102,10 +98,33 @@ router.get("/update/:postId", checkAuth, async (req, res) => {
   }
 });
 
+
+
 // POST route to handle the actual update of the post
 router.post("/update/:postId", checkAuth, (req, res) => {
   const postId = req.params.postId;
   posts.updatePost(req, res, req.session.user, postId);
 });
+
+router.get("/delete/:postId", checkAuth, async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userID = req.session.user.id;
+
+    const selectQuery = "SELECT * FROM posts WHERE id = ? AND user_id = ?";
+    const [postResults] = await connection.query(selectQuery, [postId, userID]);
+
+    if (postResults.length === 0) {
+      return res.status(403).send("You are not authorized to delete this post.");
+    }
+    const deleteQuery = "DELETE FROM posts WHERE id = ?";
+    await connection.query(deleteQuery, [postId]);
+
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send("Error deleting post");
+  }
+});
+
 
 module.exports = router;

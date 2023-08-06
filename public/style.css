@@ -196,7 +196,8 @@ form {
   font-style: italic;
 }
 
-.update-button {
+.update-button,
+.delete-button {
   background-color: #13562f;
   color: white;
   padding: 10px;
