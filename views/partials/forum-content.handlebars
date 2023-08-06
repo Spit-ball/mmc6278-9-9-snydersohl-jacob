@@ -4,5 +4,9 @@
     <h2 class="forum-title">{{title}}</h2>
     <p class="forum-body">{{body}}</p>
     <p class="created-by">Created by: {{username}}</p>
+
+    {{#if belongsToCurrentUser}}
+      <a href="/update/{{id}}" class="update-button">Update</a>
+    {{/if}}
   </div>
 {{/each}}

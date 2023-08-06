@@ -195,3 +195,25 @@ form {
   font-size: 14px;
   font-style: italic;
 }
+
+.update-button {
+  background-color: #13562f;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.new-post-link {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  background-color: #13562f;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2em;
+}
