@@ -197,7 +197,8 @@ form {
 }
 
 .update-button,
-.delete-button {
+.delete-button,
+.comment-button {
   background-color: #13562f;
   color: white;
   padding: 10px;
