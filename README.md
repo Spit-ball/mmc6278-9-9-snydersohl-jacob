@@ -1,6 +1,6 @@
 # Project Name: Just Spitballin'
 ## Description
-The Forum Posting Website is a dynamic and interactive platform that enables users to share their thoughts, ideas, and random facts with the online community. It offers two main functionalities: allowing users to create their own posts by providing a title and body content, and generating random facts for users to post. The project includes basic authentication for user registration and login, along with an API call, multiple routes, and a dedicated posts controller to manage user posts effectively.
+The Forum-style website is a dynamic and interactive platform that enables users to share their thoughts, ideas, and random facts with the online community. It currently offers two main functionalities: allowing users to create their own posts by providing a title and body content, and generating random facts for users to post. The project includes basic authentication for user registration and login, along with an API call to the UselessFacts API, multiple routes, and a dedicated posts controller to assist in managing user posts effectively.
 
 ## Features
 User Authentication: The website incorporates a user authentication system, allowing users to register and log in securely.
@@ -37,13 +37,19 @@ Access the website by opening http://localhost:3000 in your web browser.
 
 ## Usage
 
-Register a new account on the website or log in if you already have an account.
+Register a new account on the website or log in if you already have an account. You can click "Sign Up" in the top right.
 
-Once logged in, you can create a new post by clicking on the "Create Post" button and providing a title and body content.
+<img width="600" alt="Screenshot 2023-08-06 at 3 21 21 PM" src="https://github.com/Spit-ball/mmc6278-9-9-snydersohl-jacob/assets/83725076/c6fd5d41-7556-4d0e-8f03-b0e64ea4d2ae">
 
-Alternatively, you can use the "Generate Random Fact" feature to create a post with an interesting random fact.
+Once logged in, you can create a new post by clicking on the "Create Post" button and providing a title and body content. After clicking Create Post, you will see this screen:
 
-Explore the website to view and engage with posts from other users.
+<img width="600" alt="Screenshot 2023-08-06 at 3 24 11 PM" src="https://github.com/Spit-ball/mmc6278-9-9-snydersohl-jacob/assets/83725076/c1df2077-cfea-41d5-8753-1fb6d29e47b2">
 
-License
+Currently, you are able to create an Original post, or generate a random fact post. 
+
+Explore the website to view and posts from other users.
+
+<img width="600" alt="Screenshot 2023-08-06 at 3 25 43 PM" src="https://github.com/Spit-ball/mmc6278-9-9-snydersohl-jacob/assets/83725076/7b2d0c7b-5750-4149-a223-5bcc3914cb38">
+
+## License
 This project is licensed under the MIT License.
