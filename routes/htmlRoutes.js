@@ -61,11 +61,9 @@ router.get("/forum-content", async (req, res) => {
   try {
     const userID = req.session.isLoggedIn ? req.session.user.id : null;
 
-    // Query the database to get all posts with an additional column indicating if it belongs to the current user
     const query = "SELECT posts.*, users.username, (posts.user_id = ?) AS belongsToCurrentUser FROM posts JOIN users ON posts.user_id = users.id";
     const [results] = await connection.query(query, [userID]);
 
-    // Pass the posts data to the "forum-content" template
     res.render("/", { posts: results });
   } catch (err) {
     res.status(500).send("Error fetching posts");

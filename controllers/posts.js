@@ -1,7 +1,8 @@
 const mysql = require('mysql2');
 const connection = require("../config/connection");
 
-// CREATE a new post w/ user input
+// The functions here may be redundant with the functions in the htmlRoutes.js file...however I could not get the create/update post functions to work in the htmlRoutes.js file, so I added them here. I'm not sure if this is the best way to do it, but it works.
+
 async function createPost(req, res, user) {
     try {
         const userID = user.id;
