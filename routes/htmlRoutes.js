@@ -64,11 +64,19 @@ router.get("/forum-content", async (req, res) => {
     const query = "SELECT posts.*, users.username, (posts.user_id = ?) AS belongsToCurrentUser FROM posts JOIN users ON posts.user_id = users.id";
     const [results] = await connection.query(query, [userID]);
 
-    res.render("/", { posts: results });
+    // Fetch comments along with their associated users for each post
+    for (const post of results) {
+      const commentsQuery = "SELECT comments.*, users.username FROM comments JOIN users ON comments.user_id = users.id WHERE comments.post_id = ?";
+      const [commentsResults] = await connection.query(commentsQuery, [post.id]);
+      post.comments = commentsResults;
+    }
+
+    res.render("forum-content", { posts: results });
   } catch (err) {
     res.status(500).send("Error fetching posts");
   }
 });
+
 
 // POST forum-posting route
 router.post("/create", checkAuth, (req, res) => {
@@ -96,8 +104,6 @@ router.get("/update/:postId", checkAuth, async (req, res) => {
   }
 });
 
-
-
 // POST route to handle the actual update of the post
 router.post("/update/:postId", checkAuth, (req, res) => {
   const postId = req.params.postId;
@@ -112,6 +118,11 @@ router.get("/delete/:postId", checkAuth, async (req, res) => {
     const selectQuery = "SELECT * FROM posts WHERE id = ? AND user_id = ?";
     const [postResults] = await connection.query(selectQuery, [postId, userID]);
 
+    // delete all comments as well to help with post deletion
+    const deleteCommentsQuery = "DELETE FROM comments WHERE post_id = ?";
+    await connection.query(deleteCommentsQuery, [postId]);
+
+
     if (postResults.length === 0) {
       return res.status(403).send("You are not authorized to delete this post.");
     }
@@ -123,6 +134,27 @@ router.get("/delete/:postId", checkAuth, async (req, res) => {
     res.status(500).send("Error deleting post");
   }
 });
+
+router.get("/commentForm/:postId", checkAuth, async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userID = req.session.user.id;
+
+    const selectQuery = "SELECT * FROM posts WHERE id = ? AND user_id = ?";
+    const [postResults] = await connection.query(selectQuery, [postId, userID]);
+
+    res.render("commentForm", { postId });
+
+  } catch (err) {
+    res.status(500).send("Error fetching post for comment");
+  }
+});
+
+router.post("/commentForm", checkAuth, (req, res) => {
+  const postId = req.body.post_id;
+  posts.createComment(req, res, req.session.user, postId);
+});
+
 
 
 module.exports = router;

@@ -51,6 +51,24 @@ async function updatePost(req, res, user, postId) {
     }
 }
 
+async function createComment(req, res, user, postId) {
+    try {
+        const userID = user.id;
+        const { body } = req.body;
+        const insertQuery = "INSERT INTO comments (body, user_id, post_id) VALUES (?, ?, ?)";
+        const values = [body, userID, postId];
+
+        const [results] = await connection.query(insertQuery, values);
+        const commentId = results.insertId;
+        console.log("Comment created with ID: " + commentId);
+
+        res.redirect("/");
+    } catch (err) {
+        console.log("Error creating comment: " + err);
+        res.status(500).send("Error creating comment");
+    }
+}
+
 // render the form for the post on the "create-post" view
 renderCreatePostForm = (req, res) => {
     res.render("create-post");
@@ -59,7 +77,8 @@ renderCreatePostForm = (req, res) => {
 module.exports = {
     createPost,
     renderCreatePostForm,
-    updatePost
+    updatePost,
+    createComment
 };
 
 
