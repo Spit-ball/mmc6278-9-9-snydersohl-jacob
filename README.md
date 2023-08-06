@@ -23,19 +23,20 @@ To set up the Forum Posting Website on your local machine, follow these steps:
 
 Clone the repository:
 
-```git clone https://github.com/your-username/forum-posting-website.git```
+```git@github.com:Spit-ball/mmc6278-9-9-snydersohl-jacob.git```
 
 Navigate to the project directory:
 
-```cd forum-posting-website```
+```cd mmc6278-9-9-snydersohl-jacob.git```
 
 Install the required dependencies:
 
-```npm install```
+```npm i```
 
 Start the server:
 
-```npm start```
+```npm run dev```
+
 Access the website by opening http://localhost:3000 in your web browser.
 
 ## Usage
