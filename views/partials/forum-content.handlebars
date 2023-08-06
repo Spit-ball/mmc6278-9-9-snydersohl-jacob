@@ -16,10 +16,8 @@
     <a href="/commentForm/{{id}}" class="comment-button">Comment</a>
     <h3>Comments</h3>
     {{#each comments}}
-      <div class="comment">
-        <p class="comment-body">{{comments.body}}</p>
-        <p class="comment-created-by">Created by: {{username}}</p>
-      </div>
+      <p>{{body}}</p>
+      <p class="comment-created-by">Created by: {{username}}</p>
     {{/each}}
   </div>
 {{/each}}

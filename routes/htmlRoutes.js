@@ -23,18 +23,29 @@ router.get("/", async (req, res) => {
     const username = isLoggedIn && req.session.user ? req.session.user.username : '';
     const userID = isLoggedIn && req.session.user ? req.session.user.id : null;
 
-    const query = "SELECT posts.*, users.username, (posts.user_id = ?) AS belongsToCurrentUser FROM posts JOIN users ON posts.user_id = users.id";
-    const [results] = await connection.query(query, [userID]);
+    const postsQuery = "SELECT posts.*, users.username, (posts.user_id = ?) AS belongsToCurrentUser FROM posts JOIN users ON posts.user_id = users.id";
+    const [postsResults] = await connection.query(postsQuery, [userID]);
+
+    // Fetch comments for each post
+    const postsWithComments = [];
+    for (const post of postsResults) {
+      const commentsQuery = "SELECT comments.*, users.username FROM comments JOIN users ON comments.user_id = users.id WHERE post_id = ?";
+      const [commentsResults] = await connection.query(commentsQuery, [post.id]);
+      post.comments = commentsResults;
+      postsWithComments.push(post);
+    }
 
     res.render("index", {
       isLoggedIn,
       username,
-      posts: results, // Pass the posts data (including belongsToCurrentUser) to the "index" template
+      posts: postsWithComments
     });
   } catch (err) {
     res.status(500).send("Error fetching posts");
   }
 });
+
+
 
 
 router.get("/login", async (req, res) => {
