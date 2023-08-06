@@ -14,10 +14,25 @@
       <button type="submit">Create Post</button>
     </form>
   </body>
+    <title>Create a New Fact</title>
+  </head>
+  <body>
+    <h1>Create a New Fact</h1>
+    <form action="/api/random-fact" method="post">
+      <label for="title">Title Your Post!</label>
+      <textarea id="title" name="title" required></textarea>
+      <br />
+      <label for="body">Body:</label>
+      <textarea id="body" name="body" required></textarea>
+      <br />
+      <button type="submit">Create Fact</button>
+    </form>
+  </body>
 </html>
 
-<!-- style the above elements centered on the page -->
-<style>
+<!--  THE BODY LABEL should TAKE IN THE DATA FROM THE API
+    
+
 
 
 
