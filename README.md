@@ -2,6 +2,9 @@
 ## Description
 The Forum-style website is a dynamic and interactive platform that enables users to share their thoughts, ideas, and random facts with the online community. It currently offers two main functionalities: allowing users to create their own posts by providing a title and body content, and generating random facts for users to post. The project includes basic authentication for user registration and login, along with an API call to the UselessFacts API, multiple routes, and a dedicated posts controller to assist in managing user posts effectively.
 
+## Planned Additions
+Originally, I had planned to add an "upvote" feature, similar to Reddit, but due to  time constraints I could not get that done prior to the due date. This is still planned as an added feature.
+
 ## Features
 User Authentication: The website incorporates a user authentication system, allowing users to register and log in securely.
 
